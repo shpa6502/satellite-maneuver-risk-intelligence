@@ -48,7 +48,7 @@ Planned groups:
 
 ## Pipeline
 
-```text
+
 ingestion
 → cleaning
 → feature engineering
@@ -56,7 +56,7 @@ ingestion
 → risk scoring
 → Streamlit dashboard
 → deployment
-```
+
 
 ---
 
