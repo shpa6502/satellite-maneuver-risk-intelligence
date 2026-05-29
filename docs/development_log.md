@@ -163,6 +163,8 @@ This confirmed that the raw data file had not been committed. No cleanup was nee
 - Records after epoch validation: `15,507`
 - Records after range validation: `15,507`
 - Final cleaned shape: `(15507, 17)`
+- Zero records dropped — CelesTrak GP data is well-maintained
+- Validation confirmed: inclination 0–180°, eccentricity 0–1, mean motion > 0
 - Saved file: `data/processed/clean_active_20260529_213814.csv`
 
 ### Concept Applied: Data Cleaning
