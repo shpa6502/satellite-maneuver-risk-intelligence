@@ -125,3 +125,21 @@ The request succeeded, confirming that the earlier issue was environment-related
 
 ### Next Step
 Build `src/cleaning/clean_tle.py` to load the raw JSON file, validate required orbital fields, convert it into a clean pandas DataFrame, and save the cleaned output into `data/processed/`.
+
+### Git Ignore Decision
+
+Generated data files should not be committed to Git because they can become large and can be recreated by rerunning the pipeline.
+
+To keep the repository clean, a `.gitignore` rule was added for generated data outputs:
+
+```text
+data/raw/*.json
+data/processed/*.csv
+data/processed/*.parquet
+```
+
+The raw JSON file was checked with git rm --cached, but Git returned:
+
+fatal: pathspec 'data/raw/tle_active_20260529_165859.json' did not match any files
+
+This confirmed that the raw data file had not been committed. No cleanup was needed.
