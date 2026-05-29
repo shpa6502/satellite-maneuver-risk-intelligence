@@ -143,3 +143,42 @@ The raw JSON file was checked with git rm --cached, but Git returned:
 fatal: pathspec 'data/raw/tle_active_20260529_165859.json' did not match any files
 
 This confirmed that the raw data file had not been committed. No cleanup was needed.
+
+## May 29, 2026 — Session 3
+
+### Work Completed
+- Created `src/cleaning/clean_tle.py`
+- Loaded the latest raw CelesTrak JSON file from `data/raw/`
+- Converted the raw JSON into a pandas DataFrame
+- Validated required fields
+- Converted orbital numeric fields into numeric types
+- Parsed `EPOCH` into datetime format
+- Applied basic orbital range checks
+- Saved cleaned data into `data/processed/`
+
+### Result
+- Raw records loaded: `15,507`
+- Records after null validation: `15,507`
+- Records after numeric type validation: `15,507`
+- Records after epoch validation: `15,507`
+- Records after range validation: `15,507`
+- Final cleaned shape: `(15507, 17)`
+- Saved file: `data/processed/clean_active_20260529_213814.csv`
+
+### Concept Applied: Data Cleaning
+The cleaning stage converts raw API output into a structured tabular dataset. It checks required fields, validates numeric columns, parses timestamps, and removes invalid orbital records.
+
+### Concept Applied: Data Validation
+The script verifies that key orbital fields are present and physically reasonable before feature engineering. This prevents bad records from contaminating downstream calculations.
+
+### Engineering Decision
+The script loads the most recent raw file automatically using a timestamped filename pattern. This keeps the pipeline simple while preserving raw historical downloads.
+
+### Pipeline Stage
+```text
+data/raw/tle_active_20260529_165859.json
+        ↓
+src/cleaning/clean_tle.py
+        ↓
+data/processed/clean_active_20260529_213814.csv
+```
